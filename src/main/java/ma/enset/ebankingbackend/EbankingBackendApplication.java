@@ -1,15 +1,18 @@
 package ma.enset.ebankingbackend;
 
+import ma.enset.ebankingbackend.entities.AccountOperation;
 import ma.enset.ebankingbackend.entities.CurrentAccount;
 import ma.enset.ebankingbackend.entities.Customer;
 import ma.enset.ebankingbackend.entities.SavingAccount;
 import ma.enset.ebankingbackend.enums.AccouantStatus;
+import ma.enset.ebankingbackend.enums.OperationType;
 import ma.enset.ebankingbackend.repositories.AccountOperationRepository;
 import ma.enset.ebankingbackend.repositories.BankAccountRepository;
 import ma.enset.ebankingbackend.repositories.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Date;
@@ -25,7 +28,7 @@ public class EbankingBackendApplication {
     @Bean
     CommandLineRunner start(CustomerRepository customerRepository,
                             BankAccountRepository bankAccountRepository,
-                            AccountOperationRepository accountOperationRepository) {
+                            AccountOperationRepository accountOperationRepository, BasicErrorController basicErrorController) {
         return args -> {
             Stream.of("Khawla","Ihssane","Soumia").forEach(name -> {
                 Customer customer = new Customer();
@@ -53,7 +56,16 @@ public class EbankingBackendApplication {
                 bankAccountRepository.save(savingAccount);
             });
 
-
+            bankAccountRepository.findAll().forEach(bankAccount -> {
+                for (int i=0; i<10; i++) {
+                    AccountOperation accountOperation = new AccountOperation();
+                    accountOperation.setOperationdate(new Date());
+                    accountOperation.setAmount(Math.random() * 10850);
+                    accountOperation.setType(Math.random()>0.5 ? OperationType.DEBIT:OperationType.CREDIT);
+                    accountOperation.setBankAccount(bankAccount);
+                    accountOperationRepository.save(accountOperation);
+                }
+            });
         };
     }
 }

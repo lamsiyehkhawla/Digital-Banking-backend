@@ -1,4 +1,4 @@
 package ma.enset.ebankingbackend.entities;
 
-public class CurrentAccouant {
+public class SavingAccount {
 }

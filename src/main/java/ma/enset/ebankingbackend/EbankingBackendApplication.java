@@ -4,7 +4,7 @@ import ma.enset.ebankingbackend.entities.AccountOperation;
 import ma.enset.ebankingbackend.entities.CurrentAccount;
 import ma.enset.ebankingbackend.entities.Customer;
 import ma.enset.ebankingbackend.entities.SavingAccount;
-import ma.enset.ebankingbackend.enums.AccouantStatus;
+import ma.enset.ebankingbackend.enums.AccountStatus;
 import ma.enset.ebankingbackend.enums.OperationType;
 import ma.enset.ebankingbackend.repositories.AccountOperationRepository;
 import ma.enset.ebankingbackend.repositories.BankAccountRepository;
@@ -41,7 +41,7 @@ public class EbankingBackendApplication {
                 currentAccount.setId(UUID.randomUUID().toString());
                 currentAccount.setBalance(Math.random() * 10850);
                 currentAccount.setCreatedAt(new Date());
-                currentAccount.setStatus(AccouantStatus.CREATED);
+                currentAccount.setStatus(AccountStatus.CREATED);
                 currentAccount.setCustomer(customer);
                 currentAccount.setOverDraft(9000);
                 bankAccountRepository.save(currentAccount);

@@ -22,4 +22,11 @@ public class AccountOperation {
 
     public void setOperationDate(Date date) {
     }
+
+    public void setDescription(String description) {
+    }
+
+    public Object getOperationDate() {
+        return null;
+    }
 }

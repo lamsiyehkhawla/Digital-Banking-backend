@@ -1,6 +1,9 @@
 package ma.enset.ebankingbackend.services;
 
 import ma.enset.ebankingbackend.dtos.*;
+import ma.enset.ebankingbackend.exceptions.BalanceNotSufficientException;
+import ma.enset.ebankingbackend.exceptions.BankAccountNotFoundException;
+import ma.enset.ebankingbackend.exceptions.CustomerNotFoundException;
 
 import java.util.List;
 public interface BankAccountService {

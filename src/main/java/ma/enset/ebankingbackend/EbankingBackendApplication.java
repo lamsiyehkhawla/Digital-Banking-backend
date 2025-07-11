@@ -42,13 +42,9 @@ public class EbankingBackendApplication {
                 bankAccountService.saveCustomer(customer);
             });
             bankAccountService.listCustomers().forEach(customer->{
-                try {
-                    bankAccountService.saveCurrentBankAccount(Math.random()*90000,9000,customer.getId());
-                    bankAccountService.saveSavingBankAccount(Math.random()*120000,5.5,customer.getId());
+                bankAccountService.saveCurrentBankAccount(Math.random()*90000,9000,customer.getId());
+                bankAccountService.saveSavingBankAccount(Math.random()*120000,5.5,customer.getId());
 
-                } catch (CustomerNotFoundException e) {
-                    e.printStackTrace();
-                }
             });
             List<BankAccountDTO> bankAccounts = bankAccountService.bankAccountList();
             for (BankAccountDTO bankAccount:bankAccounts){
